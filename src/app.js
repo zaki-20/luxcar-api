@@ -9,16 +9,17 @@ app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true
 }))
-app.use(express.urlencoded({extended: true, limit: "16kb"}))
+app.use(express.json()); // This middleware parses JSON bodies
+
 app.use(cookieParser())
 app.use(morgan('dev'));
 
 
 //routes import
-// import userRouter from './routes/user.routes.js'
+import userRouter from './routes/user.routes.js'
 
 
 //routes declaration
-// app.use("/api/v1/users", userRouter)
+app.use("/api/v1", userRouter)
 
 export { app }
